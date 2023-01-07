@@ -15,3 +15,11 @@ ssh-keygen -t ed25519 -C "1045262335@qq.com"
 yum install -y langpacks-zh_CN && \
 yum -y reinstall glibc-common
 ```
+
+## docker help
+```bash
+# 清理容器 clean container
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker ps -a 
+# 清理镜像 clean images
+docker image rm -f $(docker images -aq) && clear && docker images -aq 
+```
