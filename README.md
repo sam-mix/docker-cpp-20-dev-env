@@ -13,5 +13,5 @@ ssh-keygen -t ed25519 -C "1045262335@qq.com"
 ```bash
 # /bin/sh: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)
 yum install -y langpacks-zh_CN && \
-yum -y reinstall glibc-common && \
+yum -y reinstall glibc-common
 ```
