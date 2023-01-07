@@ -23,3 +23,35 @@ docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker ps -a
 # 清理镜像 clean images
 docker image rm -f $(docker images -aq) && clear && docker images -aq 
 ```
+
+## next operate
+```bash
+# 安装
+git clone https://gitee.com/mihongkun/ohmyzsh.git ~/.oh-my-zsh
+
+# 备份与替换zsh配置文件
+# mv ~/.zshrc  ~/.zshrc.bak
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+# 安装p10k主题
+git clone --depth=1 https://gitee.com/mihongkun/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
+# 安装自动建议插件
+git clone https://gitee.com/mihongkun/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
+# 安装高亮插件
+git clone https://gitee.com/mihongkun/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+
+sed -i 's#robbyrussell#powerlevel10k/powerlevel10k#g' ~/.zshrc
+sed -i 's/plugins=(git)/plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)/g' ~/.zshrc
+
+# sed -i 's/原字符串/替换字符串/g' filename
+
+cat >> ~/.zshrc <<EOF 
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+EOF
+
+# 安装完成后配置 p10k ，根据提示进行配置即可
+source ~/.zshrc # 第一次系统会自动进行配置
+# 重复配置 p10k
+p10k configure
+
+```
