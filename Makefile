@@ -6,6 +6,11 @@ all: build
 build:
 	@docker build -t cpp-20-dev-env:latest .
 
+# 构建centos版本镜像
+.PHONY: bc
+bc:
+	@docker build  -f ./Dockerfile-centos -t cpp-20-dev-env:latest .
+
 # 正常运行
 .PHONY: run
 run:

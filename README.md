@@ -55,3 +55,15 @@ source ~/.zshrc # 第一次系统会自动进行配置
 p10k configure
 
 ```
+
+
+
+## arch linux 
+```bash
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+echo 'Server = https://mirrors.cloud.tencent.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+pacman -Syy
+```
+
+## ubuntu linux
+
