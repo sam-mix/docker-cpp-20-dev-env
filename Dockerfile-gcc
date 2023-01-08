@@ -1,0 +1,28 @@
+FROM gcc
+MAINTAINER SamMix <1045262335@qq.com>
+USER root:root
+WORKDIR /root
+ADD ./.p10k.zsh .p10k.zsh
+ADD ./.zshrc .zshrc
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
+sed -i 's/deb.debian.org/mirrors.tencentyun.com/g' /etc/apt/sources.list && \
+apt update -y && \
+apt upgrade -y && \
+apt install --no-install-recommends -y openssh-server neofetch zsh neovim git && \
+ssh-keygen -A && \
+ssh-keygen -t ed25519 -C "1045262335@qq.com" -f ~/.ssh/id_ed25519 -q && \
+sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 60/g' /etc/ssh/sshd_config && \
+sed -i 's/#ClientAliveCountMax 3/ClientAliveCountMax 86400/g' /etc/ssh/sshd_config && \
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && \
+echo "root:root" | chpasswd && \
+git config --global user.email "1045262335@qq.com" && \
+git config --global user.name "Sam Mix" && \
+git clone https://gitee.com/mihongkun/ohmyzsh.git ~/.oh-my-zsh && \
+git clone --depth=1 https://gitee.com/mihongkun/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k && \
+git clone https://gitee.com/mihongkun/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions && \
+git clone https://gitee.com/mihongkun/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting && \
+sed -i 's#root:x:0:0:root:/root:/bin/bash#root:x:0:0:root:/root:/bin/zsh#g' /etc/passwd && \
+rm -rf /var/lib/apt/lists/* && \
+mkdir /run/sshd
+EXPOSE 22
+CMD ["/usr/sbin/sshd" , "-D"]
