@@ -87,5 +87,6 @@ pacman -Syy
 ## debian linux
 ```bash
 cp /etc/apt/sources.list /etc/apt/sources.list.bak
-sed -i 's/deb.debian.org/mirrors.tencentyun.com/g'
+sed -i 's/deb.debian.org/mirrors.tencentyun.com/g' /etc/apt/sources.list
+apt update -y && apt upgrade -y
 ```
