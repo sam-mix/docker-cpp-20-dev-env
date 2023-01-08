@@ -1,6 +1,12 @@
 # docker-cpp-20-dev-env
 GCC development environment suport c++ 20 with docker.
 
+## docker install 
+``` bash
+wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+sed -i 's+download.docker.com+mirrors.cloud.tencent.com/docker-ce+' /etc/yum.repos.d/docker-ce.repo
+yum install docker-ce
+```
 
 ## generate ssh key 
 

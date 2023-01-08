@@ -15,15 +15,13 @@ echo "root:root" | chpasswd && \
 git config --global user.email "1045262335@qq.com" && \
 git config --global user.name "Sam Mix" && \
 git clone https://gitee.com/mihongkun/ohmyzsh.git ~/.oh-my-zsh && \
-cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc && \
 git clone --depth=1 https://gitee.com/mihongkun/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k && \
 git clone https://gitee.com/mihongkun/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions && \
 git clone https://gitee.com/mihongkun/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting && \
-sed -i 's#root:x:0:0:root:/root:/bin/bash#root:x:0:0:root:/root:/bin/zsh#g' /etc/passwd && \
-echo cpp20 > /etc/hostname && \
-sed -i 's#robbyrussell#powerlevel10k/powerlevel10k#g' ~/.zshrc && \
-sed -i 's/plugins=(git)/plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)/g' ~/.zshrc && \
-echo "export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8" >> ~/.zshrc
+sed -i 's#root:x:0:0:root:/root:/bin/bash#root:x:0:0:root:/root:/bin/zsh#g' /etc/passwd
+
+ADD ./.p10k.zsh ~/.p10k.zsh
+ADD ./.zshrc ~/.zshrc
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd" , "-D"]
