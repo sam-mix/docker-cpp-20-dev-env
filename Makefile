@@ -24,7 +24,7 @@ run:
 # 正常运行
 .PHONY: rg
 rg:
-	@docker run -d -p 22022:22 --name cpp-20-dev-env-gcc --hostname cpp20 --restart=always sammix888/cpp-20-dev-env:gcc 
+	@docker run -d -p 22022:22 --name cpp-23-dev-env --hostname cpp23 --restart=always sammix888/cpp-20-dev-env:gcc 
 
 # 交互运行
 .PHONY: i
