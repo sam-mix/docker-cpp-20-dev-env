@@ -60,7 +60,10 @@ sed -i 's/plugins=(git)/plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-hi
 
 # sed -i 's/原字符串/替换字符串/g' filename
 
-echo "export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8" >> ~/.zshrc
+cat >> ~/.zshrc <<EOF 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+EOF
 
 # 安装完成后配置 p10k ，根据提示进行配置即可
 source ~/.zshrc # 第一次系统会自动进行配置
