@@ -83,3 +83,9 @@ pacman -Syy
 
 ## ubuntu linux
 
+
+## debian linux
+```bash
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sed -i 's/deb.debian.org/mirrors.tencentyun.com/g'
+```
