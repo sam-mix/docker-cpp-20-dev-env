@@ -5,7 +5,7 @@ WORKDIR /root
 RUN yum update -y && \
 yum install -y epel-release && \
 yum update -y && \
-yum install -y neofetch openssh-server gcc zsh neovim gcc-c++ git screen wget htop cmake python3 lua && \
+yum install -y neofetch openssh-server gcc zsh neovim gcc-c++ git screen wget htop cmake python3 lua glibc-langpack-en && \
 ssh-keygen -A && \
 ssh-keygen -t ed25519 -C "1045262335@qq.com" -f ~/.ssh/id_ed25519 -q && \
 sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 60/g' /etc/ssh/sshd_config && \
@@ -20,7 +20,10 @@ git clone --depth=1 https://gitee.com/mihongkun/powerlevel10k.git ~/.oh-my-zsh/t
 git clone https://gitee.com/mihongkun/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions && \
 git clone https://gitee.com/mihongkun/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting && \
 sed -i 's#root:x:0:0:root:/root:/bin/bash#root:x:0:0:root:/root:/bin/zsh#g' /etc/passwd && \
-echo cpp20 > /etc/hostname
+echo cpp20 > /etc/hostname && \
+sed -i 's#robbyrussell#powerlevel10k/powerlevel10k#g' ~/.zshrc && \
+sed -i 's/plugins=(git)/plugins=(\n\tgit\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)/g' ~/.zshrc && \
+echo "export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8" >> ~/.zshrc
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd" , "-D"]
