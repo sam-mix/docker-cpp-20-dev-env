@@ -6,6 +6,16 @@ GCC development environment suport c++ 20 with docker.
 wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
 sed -i 's+download.docker.com+mirrors.cloud.tencent.com/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 yum install docker-ce
+cat > /etc/docker/daemon.json <<EOF 
+{
+    "registry-mirrors": [
+        "https://mirror.ccs.tencentyun.com",
+        "https://hub-mirror.c.163.com",
+        "https://mirror.baidubce.com"
+    ]
+}
+EOF
+
 ```
 
 ## generate ssh key 

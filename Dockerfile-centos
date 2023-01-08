@@ -2,6 +2,8 @@ FROM quay.io/centos/centos:stream9
 MAINTAINER SamMix <1045262335@qq.com>
 USER root:root
 WORKDIR /root
+ADD ./.p10k.zsh .p10k.zsh
+ADD ./.zshrc .zshrc
 RUN yum update -y && \
 yum install -y epel-release && \
 yum update -y && \
@@ -18,10 +20,9 @@ git clone https://gitee.com/mihongkun/ohmyzsh.git ~/.oh-my-zsh && \
 git clone --depth=1 https://gitee.com/mihongkun/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k && \
 git clone https://gitee.com/mihongkun/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions && \
 git clone https://gitee.com/mihongkun/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting && \
-sed -i 's#root:x:0:0:root:/root:/bin/bash#root:x:0:0:root:/root:/bin/zsh#g' /etc/passwd
-
-ADD ./.p10k.zsh ~/.p10k.zsh
-ADD ./.zshrc ~/.zshrc
-
+sed -i 's#root:x:0:0:root:/root:/bin/bash#root:x:0:0:root:/root:/bin/zsh#g' /etc/passwd && \
+yum clean all && \
+rm -rf /var/cache/yum && \
+zsh
 EXPOSE 22
 CMD ["/usr/sbin/sshd" , "-D"]

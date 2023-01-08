@@ -14,7 +14,7 @@ bc:
 # 正常运行
 .PHONY: run
 run:
-	@docker run -d -p 22222:22 --name cpp-20-dev-env --restart=always cpp-20-dev-env:latest 
+	@docker run -d -p 22222:22 --name cpp-20-dev-env --hostname cpp20 --restart=always cpp-20-dev-env:latest 
 
 # 交互运行
 .PHONY: i
