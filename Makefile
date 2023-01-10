@@ -16,6 +16,11 @@ bc:
 bg:
 	@docker build  -f ./Dockerfile-gcc -t cpp-20-dev-env:latest .
 
+# 构建gcc版本镜像
+.PHONY: bcl
+bcl:
+	@docker build  -f ./Dockerfile-clang -t sammix888/cpp-20-dev-env:clang .
+
 # 正常运行
 .PHONY: run
 run:
@@ -25,6 +30,11 @@ run:
 .PHONY: rg
 rg:
 	@docker run -d -p 22022:22 --name cpp-23-dev-env --hostname cpp23 --restart=always sammix888/cpp-20-dev-env:gcc 
+
+# 正常运行
+.PHONY: rcl
+rcl:
+	@docker run -d -p 22022:22 --name clang15 --hostname clang15 --restart=always sammix888/cpp-20-dev-env:clang
 
 # 交互运行
 .PHONY: i
