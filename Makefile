@@ -34,7 +34,7 @@ rg:
 # 正常运行
 .PHONY: rcl
 rcl:
-	@docker run -d -p 22022:22 --name clang15 --hostname clang15 --restart=always sammix888/cpp-20-dev-env:clang
+	@docker run -d -p 22122:22 --name clang15 --hostname clang15 --restart=always sammix888/cpp-20-dev-env:clang
 
 # 交互运行
 .PHONY: i
